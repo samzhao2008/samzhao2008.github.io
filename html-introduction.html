@@ -1,0 +1,386 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/moon.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+            ### What is HTML
+            * stands for Hyper Text Markup Language
+            * a markup language for displaying the structure of webpages
+            * using tags
+            * browser uses html and css to render visulized webpages.
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ### html element
+            `<tag>...content...</tag>`
+
+
+            for example
+
+            `<p>This is a paragraph</p>`
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ### HTML Attributes
+            
+            for example
+
+            `<img src="img.jpg" width="500" height="600">`
+
+            has src, width and height attributes
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ### html document structure
+            ```
+              <!DOCTYPE html>
+              <html lang="en">
+                <head>
+                  <!-- header -->
+                </head>
+                <body>
+                  <!-- body -->
+                </body>
+              </html>
+            ```
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ### Header Elements
+            * page title: 
+              ```
+              <title>Page Title</title>
+              ```
+            * favicon: 
+              ```
+              <link rel="icon" href="favicon.png" sizes="16x16" type="image/png">
+              ```
+
+            ![title-favicon](./images/title-favicon.png)
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ### Header Elements
+            * stylesheet
+              ```
+              <link rel="stylesheet" href="style.css">
+              ```
+            * script tag
+              ```
+              <script type="text/javascript" src="a.js"></script>
+              ```
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            #### `<meta>` Element
+
+            ```
+            <meta charset="UTF-8">
+            <meta name="description" content="Free Web tutorials">
+            <meta name="keywords" content="HTML, CSS, XML, JavaScript">
+            ```
+
+            used by browsers, search engines, social media, and other web services.
+
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ### html tags
+            * headings: `<h1>, <h2>, <h3>...`
+            * paragraph: `<p>`
+            * image: `<img src='...' />`
+            * link: `<a href='...'>text</a>`
+          </textarea>
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### html tags - Unordered list
+              <ul>
+                <li>item 1</li>
+                <li>item 2</li>
+                <li>item 3</li>
+              </ul>
+
+              ```
+                <ul>
+                  <li>item 1</li>
+                  <li>item 2</li>
+                  <li>item 3</li>
+                </ul>
+              ```
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### html tags - ordered list
+              <ol>
+                <li>item 1</li>
+                <li>item 2</li>
+                <li>item 3</li>
+              </ol>
+
+                ```
+                <ol>
+                  <li>item 1</li>
+                  <li>item 2</li>
+                  <li>item 3</li>
+                </ol>
+                ```
+            </textarea>
+          </section>
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+               ### html tags - table
+
+               <table>
+                 <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                  </tr>
+                 </thead>
+                 <tbody>
+                   <tr>
+                     <td>James</td>
+                     <td>21</td>
+                     <td>Male</td>
+                   </tr>
+                   <tr>
+                     <td>Mary</td>
+                     <td>23</td>
+                     <td>Female</td>
+                   </tr>
+                   <tr>
+                     <td>Mike</td>
+                     <td>19</td>
+                     <td>Male</td>
+                   </tr>
+                 </tbody>
+               </table>
+
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              #### table html code
+
+              ```
+              <table>
+                 <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                  </tr>
+                 </thead>
+                 <tbody>
+                   <tr>
+                     <td>James</td>
+                     <td>21</td>
+                     <td>Male</td>
+                   </tr>
+                   <tr>
+                     <td>Mary</td>
+                     <td>23</td>
+                     <td>Female</td>
+                   </tr>
+                   <tr>
+                     <td>Mike</td>
+                     <td>19</td>
+                     <td>Male</td>
+                   </tr>
+                 </tbody>
+               </table>
+              ```
+            </textarea>
+          </section>
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Html Form
+              * used for collecting user's data
+              * a form normally contains a few form elements
+              * input elements: text fields, checkboxes, dropdown select, radio buttons, submit buttons and more
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### How Html Form looks like
+              ![html form](./images/sample_web_form.png)
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Html Form Sample Code
+              ```
+                <form action="./submit" method="post" >
+                  <p>Name: <input type="text" name="firstname"></p>
+                  <p>Major: 
+                    <select name="major">
+                      <option value="IT">IT</option>
+                      <option value="Theology">Theology</option>
+                    </select>
+                  </p>
+                  <button type="submit">Submit</button>
+                </form>
+              ```
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### html form attributes
+              Attribute | Description | Default
+              ------------ | ---------| -------
+              action | url to sumit the form | page
+              method | http method (get, post) | get
+              autocomplete | browser autocomplete? | on
+              accept-charset | charset of the form | page charset
+              enctype | encoding of the submitted data | url-encoded
+              name | form name | none
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### form elements
+              * `<input>`
+              * `<select>`
+              * `<textarea>`
+              * `<button>`
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              #### input types
+              ```<input type="[input type]">```
+              * text
+              * password
+              * submit / reset
+              * radio
+              * checkbox
+              * html5 types: color, date, email, number ...
+            </textarea>
+          </section>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ### A little bit Html 5
+            * HTML5 is the latest version of Hypertext Markup Language
+            * extend functionalities, less dependence on browser plugins and scripts
+            * Device independence
+
+            *for more html design principles, refer https://www.w3.org/TR/html-design-principles*
+
+          </textarea>
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Html 5 Semantic tags
+                * `<header>`
+                * `<footer>`
+                * `<section>`
+                * `<article>`
+                * `<nav>`
+                * `<aside>`
+                
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+                * `<details>`
+                * `<figcaption>`
+                * `<figure>`
+                * `<main>`
+                * `<mark>`
+                * `<summary>`
+                * `<time> `
+            </textarea>
+          </section>
+          <section>
+            <img src="./images/html5_sectioning_high_level.jpg" alt="html 5 sections" width="85%">
+          </section>
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Html 5 features
+              * New input types
+              * Audio & Video
+              * SVG (Scalable Vector Graphics)
+              * Canvas: draw graphics using JavaScript
+              * Web Storage: Session Storage(persistent) & Local Storage (non-persistent)
+              * Web SQL Database
+              * IndexedDB
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Html 5 features --cont
+              * Server Sent Events (server to browser)
+              * WebSockets (bidirection between server and browser)
+              * Web Workers
+              * Web messaging
+              * Geolocation
+              * Web messaging
+              * CORS (Cross-origin resource sharing)
+            </textarea>
+          </section>
+          
+        </section>
+        
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        history: true,
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
