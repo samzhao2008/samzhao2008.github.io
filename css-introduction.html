@@ -1,0 +1,295 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/moon.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### What is CSS
+              * acronym of Cascading Style Sheets
+              * describes the style of html elements
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### No CSS
+              <img src="./images/amazon-no-css.png" alt="amazon no css">
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Having CSS
+              <img src="./images/amazon-css.png" alt="amazon css">
+            </textarea>
+          </section>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ### How does CSS looks like
+            ```
+              body {
+                background-color: black;
+              }
+
+              h1 {
+                color: white;
+                text-align: center;
+              }
+
+              p {
+                font-family: serif;
+                font-size: 15px;
+              }
+            ```
+          </textarea>
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### CSS syntax
+              ![css syntax](./images/css-syntax.gif)
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Simple Selectors
+              * by element
+              ```
+              p { 
+                  text-align: center; 
+                  color: white;
+                }
+              ```
+              * by id
+              ```
+              #para1 {
+                  text-align: center;
+                  color: white;
+              }
+              ```
+              * by class
+              ```
+              .center {
+                  text-align: center;
+              }
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Attribute selectors
+              * select all elements having a specific attribute `[attribute name] { css rules}`
+              * select all elements whose attribute equal to a specific value `[attribute name = value] {css rules}`
+              * start with using ^=, end with $=, contain *=
+              ```
+                div[data-slide="full"] {
+                    width: 80%;
+                    background-color: black;
+                }
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Pseudo-classes selectors
+              * Pseudo classes: `:active, :checked, :hover, :first-child, :disabled ...`
+              ```
+                a:visited {
+                    color: blue;
+                }
+              ```
+
+              *[more pseudo classes](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Pseudo-classes_and_pseudo-elements)*
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Pseudo-elements selectors
+              * Pseudo elements: `::after, ::before, ::first-letter, ::first-line, ::selection, ::backdrop`
+
+              ```
+                /* All elements with an attribute "href" 
+
+                with values starting with "http" will have
+
+                an arrow added after their content 
+
+                (to indicate they are external links) */
+
+                [href^=http]::after {
+                  content: '⤴';
+                }
+              ```
+              
+              *[More Information ⤴](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Pseudo-classes_and_pseudo-elements#Pseudo-elements)*
+              
+            </textarea>
+            
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Combinators and selector lists
+              | Syntax | Selects  |
+              | ------ | -------- |
+              | A, B   | A and B  |
+              | A  B   |matching B that is a descendant of A|
+              | A > B  |matching B that is a direct child of A
+              | A + B| matching B that is the next sibling of A
+              | A ~ B| matching B which is sibling of A 
+              
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ![child combinator selector](./images/child-combinator-selector-example.png)
+
+              *picture comes from css-tricks.com*
+            </textarea>
+          </section>
+          
+          <section data-markdown>
+            <textarea data-template>
+              ![adjacent-selector-example](./images/adjacent-selector-example.png)
+
+              *picture comes from css-tricks.com*
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ![general-sibling-example](./images/general-sibling-example.png)
+
+              *picture comes from css-tricks.com*
+            </textarea>
+          </section>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### Values and Unit
+            * Values
+              * numbers: 100px
+              * percentages: 80%
+              * colors: white, #fff
+              * functions: rgb(255,0,0), rotate(45deg);
+            * Units: px, em, deg ...
+              
+          </textarea>
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Three Ways to Insert CSS
+              1. external style sheet
+              ```
+                <link rel="stylesheet" href="style.css">
+              ```
+              2. internal style sheet
+              ```
+              <style>
+                  p {color: red;}
+                  body {background-color: black}
+              </style>
+              ```
+              3. Inline style
+              ```
+              <p style="color: blue">hello</p>
+              ```
+            </textarea>
+          </section>
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### CSS overide rules
+              1. `!important` always wins
+              2. Calculate Specificity, higer score overrule lower score
+              3. Same Specificity: later loaded wins
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Specificity Calculate rule
+              1. 1000: inline style attribute
+              2. 100: ID selector
+              3. 10: class selector, attribute selector, or pseudo-class contained inside the overall selector
+              4. 1: element selector or pseudo-element contained inside the overall selector
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+            |selector| 1000 | 100 | 10 | 1 | score|
+            |--------|------|-----|----|---|------|
+            | p      |  0   |  0  |  0 | 1 |   1  |
+            | p.header |  0 |  0  | 10 | 1 | 11   |
+            | #para  |  0   |  1  |  0 | 0 | 100  |
+            | li > a[href*="en-US"] > .inline-warning  |  0   |  0  |  2 | 2 | 22  |
+            | #para  |  0   |  1  |  0 | 0 | 100  |
+            |rule inside an element's style attribute| 1 | 0 | 0 | 0 | 1000|
+            </textarea>
+          </section>
+
+          
+        </section>
+
+        
+
+        <section data-markdown>
+          <textarea data-template>
+            ### References:
+            * https://developer.mozilla.org/en-US/docs/Learn/CSS
+            * https://css-tricks.com/child-and-sibling-selectors/
+          </textarea>
+        </section>
+
+
+        
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        history: true,
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
