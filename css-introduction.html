@@ -254,12 +254,562 @@
             | #para  |  0   |  1  |  0 | 0 | 100  |
             |rule inside an element's style attribute| 1 | 0 | 0 | 0 | 1000|
             </textarea>
+          </section>   
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Box Model
+              
+              <img src="./images/box-model-standard-small.png" alt="box model" style="width: 70%">
+            </textarea>
           </section>
 
-          
+          <section data-markdown>
+            <textarea data-template>
+              ### Overflow
+              * auto: overflowing content is hidden and scroll bars are shown
+              * hidden: overflowing content is hidden and no scroll bars
+              * visible: the overflowing content is shown outside of the box (default)
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Background
+              * background-image
+              * background-color
+              * background-origin
+              * background-position
+              * background-repeat
+              * background-clip
+              * background-size
+              * background-attachment
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### The shorthand background property
+              ```
+              background: bg-color bg-image position/bg-size     
+                          bg-repeat bg-origin bg-clip 
+                          bg-attachment initial|inherit;
+              ```
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Type of CSS boxes - display property
+              1. inline: flows with the document's text. Width and height settings have no effect on inline boxes
+              2. block: stacked upon other boxes, have width and height
+              3. inline-block: between inline and block,  flows with the document's text, have width and height
+
+              *[reference](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Box_model)*
+            </textarea>
+          </section>
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Styling text
+              * color: can be keywords(like red), hex value(like #777), rgb, rgba
+              * font: font-family, font-size, font-style, font-weight ...
+              * text-transform: none, uppercase, lowercase, capitalize, full-width
+              * text-decoration: none, underline, overline, line-through
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Text layout
+              * text-align: available values: left, right, center, justify
+              * line-height: height of each line of text, eg `line-height: 2` sets double line height 
+              * letter-spacing: spaces between letters
+              * word-spacing:  spaces between words
+            </textarea>
+          </section>
+    
         </section>
 
+        <section id="layout">
+          <style type="text/css">
+            #layout .wrapper{
+              width: 90%; 
+              margin: 20px auto;
+            }
+            #layout .wrapper div{
+                background-color: #237c96;
+                border-radius: 8px;
+                margin: 5px;
+                height: 60px;
+                padding: 20px;
+                
+            }
+
+            #layout .wrapper3 > div{
+              flex: 1;
+            }
+          </style>
+          <section data-markdown>
+            <textarea data-template>
+              ### CSS Layout - Flexbox
+              Normal
+              ```
+                <div class="wrapper">
+                  <div class="box1">One</div>
+                  <div class="box2">Two</div>
+                  <div class="box3">Three</div>
+                </div>
+              ```
+
+              <div class="wrapper">
+                <div class="box1">One</div>
+                <div class="box2">Two</div>
+                <div class="box3">Three</div>
+              </div>
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ```
+              .wrapper {
+                display: flex;
+              }
+              ```
+
+              <div class="wrapper" style="display: flex">
+                <div class="box1">One</div>
+                <div class="box2">Two</div>
+                <div class="box3">Three</div>
+              </div>
+
+              ```
+                .wrapper > div {
+                    flex: 1;
+                }
+              ```
+
+              <div class="wrapper wrapper3" style="display: flex">
+                <div class="box1">One</div>
+                <div class="box2">Two</div>
+                <div class="box3">Three</div>
+              </div>
+
+              *more information:  [CSS Trick](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)*
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### CSS Layout - Grid
+              *code*
+              ```
+              <div class="wrapper">
+                  <div class="box1">One</div>
+                  <div class="box2">Two</div>
+                  <div class="box3">Three</div>
+                  <div class="box4">Four</div>
+                  <div class="box5">Five</div>
+                  <div class="box6">Six</div>
+              </div>
+              ```
+
+              ```
+              .wrapper {
+                  display: grid;
+                  grid-template-columns: 1fr 1fr 1fr;
+                  grid-template-rows: 100px 100px;
+                  grid-gap: 10px;
+              }
+              ```
+            </textarea>
+          </section>
+            
+          <section>
+            <style scoped>
+              .wrapper {
+                  display: grid;
+                  grid-template-columns: 1fr 1fr 1fr;
+                  grid-template-rows: 100px 100px;
+                  grid-gap: 10px;
+              }
+              .wrapper > div {
+                background-color: #237c96;
+                border-radius: 8px;
+                margin: 5px;
+              }
+            </style>
+            
+              <p><em>effect</em></p>
+
+              <div class="wrapper">
+                <div class="box1">One</div>
+                <div class="box2">Two</div>
+                <div class="box3">Three</div>
+                <div class="box4">Four</div>
+                <div class="box5">Five</div>
+                <div class="box6">Six</div>
+              </div>
+            
+              <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">more info: CSS-Tricks</a>
+            
+          </section>
         
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Floats
+              * left — Floats the element to the left.
+              * right — Floats the element to the right.
+              * none — Specifies no floating at all. This is the default value.
+              * inherit — Specifies that the value of the float property should be inherited from the element's parent element.
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              *code*
+
+              ```
+              <h1>Simple float example</h1>
+    
+              <div class="box">Float</div>
+                  
+              <p> Lorem ipsum dolor sit amet, consectetur adipiscing...</p>
+              ```
+
+              ```
+              .box {
+                  float: left;
+                  width: 150px;
+                  height: 150px;
+                  margin-right: 30px;
+              }
+              ```
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              *effect*
+
+              ![css float](./images/css-float.png)
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Clear Floats
+              clear property
+              * left: Clear items floated to the left.
+              * right: clear items floated to the right.
+              * both: clear any floated items, left or right.
+              
+              ```
+              .cleared {
+                clear: left;
+              }
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              *Originally for floating images inside blocks of text, the float property became one of the most commonly used tools for creating multiple column layouts on webpages. With the advent of Flexbox and Grid it has now returned to its original purpose*
+
+              *More Info [Floats | MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Floats)*
+            </textarea>
+          </section>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ### Positioning
+            * Static positioning: put the element into its normal position in the document layout flow (default)
+            * Relative positioning
+            * Absolute positioning
+            * Fixed positioning
+            * Sticky positioning
+          </textarea>
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Relative positioning
+
+              Relative positioning allows you to offset an item from the position in normal flow it would have by default. This means you could achieve a task such as moving an icon down a bit so it lines up with a text label.
+            </textarea>
+          </section>
+          <section>
+              <style scoped>
+                .re-position p {border: 1px solid beige }
+                .re-position .positioned { 
+                  position: relative;
+                  background: rgba(255,84,104,.3);
+                  border: 2px solid rgb(255,84,104);
+                  top: 40px;
+                  left: 40px; 
+                }
+              </style>
+
+              <div class="re-position">
+                <h4>Relative Positioning</h1>
+                <p>I am a basic block level element.</p>
+                <p class="positioned">I am a relative positioned block level element.</p>
+                <p>I am a basic block level element.</p>
+              </div>
+          </section>
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Absolute positioning
+              Absolute positioning is used to completely remove an element from normal flow, and place it using offsets from the edges of a containing block.
+            </textarea>
+          </section>
+          <section>
+            <style>
+              .ab-position p {border: 1px solid beige }
+              .ab-position .positioned { 
+                  position: absolute;
+                  background: rgba(255,84,104,.3);
+                  border: 2px solid rgb(255,84,104);
+                  top: 40px;
+                  left: 40px; 
+                }
+            </style>
+
+            <div class="ab-position">
+              <h4>Obsolute Positioning</h1>
+              <p>I am a basic block level element.</p>
+              <p class="positioned">I am a obsolute positioned block level element.</p>
+              <p>I am a basic block level element.</p>
+            </div>
+          </section>
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Fixed positioning
+              Fixed positioning removes our element from document flow in the same way as absolute positioning. However, instead of the offsets being applied from the container, they are applied from the viewport
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              *code*
+
+              ```
+              .positioned {
+                  position: fixed;
+                  left: 30px;
+                  border: 2px solid red;
+              }
+              ```
+            </textarea>
+          </section>
+          <section>
+            <p><em>effect</em></p>
+            <div style="height: 400px; overflow: scroll;">
+              <div class="positioned" style="position: fixed; border: 2px solid red; left: 30px">Fixed</div>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla luctus aliquam dolor, eu lacinia lorem placerat vulputate. Duis felis orci, pulvinar id metus ut, rutrum luctus orci. Cras porttitor imperdiet nunc, at ultricies tellus laoreet sit amet. Sed auctor cursus massa at porta. Integer ligula ipsum, tristique sit amet orci vel, viverra egestas ligula. Curabitur vehicula tellus neque, ac ornare ex malesuada et. In vitae convallis lacus. Aliquam erat volutpat. Suspendisse ac imperdiet turpis. Aenean finibus sollicitudin eros pharetra congue. Duis ornare egestas augue ut luctus. Proin blandit quam nec lacus varius commodo et a urna. Ut id ornare felis, eget fermentum sapien.
+
+              Nam vulputate diam nec tempor bibendum. Donec luctus augue eget malesuada ultrices. Phasellus turpis est, posuere sit amet dapibus ut, facilisis sed est. Nam id risus quis ante semper consectetur eget aliquam lorem. Vivamus tristique elit dolor, sed pretium metus suscipit vel. Mauris ultricies lectus sed lobortis finibus. Vivamus eu urna eget velit cursus viverra quis vestibulum sem. Aliquam tincidunt eget purus in interdum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla luctus aliquam dolor, eu lacinia lorem placerat vulputate. Duis felis orci, pulvinar id metus ut, rutrum luctus orci. Cras porttitor imperdiet nunc, at ultricies tellus laoreet sit amet. Sed auctor cursus massa at porta. Integer ligula ipsum, tristique sit amet orci vel, viverra egestas ligula. Curabitur vehicula tellus neque, ac ornare ex malesuada et. In vitae convallis lacus. Aliquam erat volutpat. Suspendisse ac imperdiet turpis. Aenean finibus sollicitudin eros pharetra congue. Duis ornare egestas augue ut luctus. Proin blandit quam nec lacus varius commodo et a urna. Ut id ornare felis, eget fermentum sapien.
+            </div>
+            
+          </section>
+        </section>
+        
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Sticky positioning
+
+              Sticky positioning is the final positioning method that we have at our disposal. It mixes the default static positioning with fixed positioning. When an item has position: sticky it will scroll in normal flow until it hits offsets from the viewport that we have defined. At that point it becomes "stuck" as if it had position: fixed applied.
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              *code*
+
+              ```
+              .positioned {
+                position: sticky;
+                top: 30px;
+                left: 30px;
+              }
+              ```
+            </textarea>
+          </section>
+
+          <section>
+            <p><em>effect</em></p>
+            <div style="height: 400px; overflow: scroll;">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero vel, iure, quidem magnam error dignissimos. Impedit omnis neque cum nam totam, deleniti doloribus facere velit voluptas dignissimos non pariatur incidunt!</p>
+              <p class="positioned" style="position: sticky; top: 30px; left: 30px; border: 1px solid red; background-color: black">Sticky Position Element</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero vel, iure, quidem magnam error dignissimos. Impedit omnis neque cum nam totam, deleniti doloribus facere velit voluptas dignissimos non pariatur incidunt!</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero vel, iure, quidem magnam error dignissimos. Impedit omnis neque cum nam totam, deleniti doloribus facere velit voluptas dignissimos non pariatur incidunt!</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero vel, iure, quidem magnam error dignissimos. Impedit omnis neque cum nam totam, deleniti doloribus facere velit voluptas dignissimos non pariatur incidunt!</p>
+            </div>
+          </section>
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Common CSS3 Properties
+              * `border-radius`
+
+              ```
+              #rcorners1 {
+                  border-radius: 25px;
+                  background: #8AC007;
+                  padding: 20px;
+                  width: 200px;
+                  height: 150px;
+               }
+               ````
+               <p id = "rcorners1" style=" border-radius: 25px;background: #8AC007;padding: 20px;width: 200px;height: 100px;margin: auto; color:white">Rounded corners!</p>
+              
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### text-shadow
+
+              ```
+              p {
+                text-shadow: 26px 23px 4px #FF9800
+              }
+              ```
+              <p style="text-shadow: 26px 23px 4px #FF9800">HELLO WORLD</p>
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### box-shadow
+              
+              ```
+              div { 
+                box-shadow: 10px 10px 2px bisque;
+              }
+              ```
+              <div style="    
+                height: 200px;
+                width: 80%;
+                margin: auto;
+                box-shadow: 10px 10px 2px bisque;
+                color: #cec7c7;
+                background-color: #607D8B;">
+              This is a div element</div>
+   
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Gradients
+              * liner gradient
+
+              ```
+                background: linear-gradient(to right, red , blue);
+              ```
+
+              <p style="   
+                width: 90%;
+                background: linear-gradient(to right, red , blue);
+                height: 150px;
+                margin: auto;"></p>
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### 2d Transform
+              * matrix(n,n,n,n,n,n)
+              * translate(x,y)
+              * scale(x,y)
+              * rotate(angle)
+              * skewX(angle)
+              * skewY(angle)
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### more
+              * 3d transform
+              * animation
+              * transitions
+              * ...
+              
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Responsive Web Design
+              * makes web page look good on any size screen (mobile phones, PCs, tablets).
+              * uses only HTML and CSS
+              
+              ![responsive design](./images/responsive-design.png)
+              
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Responsive Web Design - The Viewport
+              
+              ```
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              ```
+
+              * The viewport is the user's visible area of a web page.
+              * The width=device-width part sets the width of the page to follow the screen-width of the device
+              * The initial-scale=1.0 part sets the initial zoom level when the page is first loaded by the browser.
+              
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Responsive Web Design - Media Queries
+              ```
+                /* Small devices (portrait tablets and large phones, 600px and up) */
+                @media only screen and (min-width: 600px) {...} 
+
+                /* Medium devices (landscape tablets, 768px and up) */
+                @media only screen and (min-width: 768px) {...} 
+
+                /* Large devices (laptops/desktops, 992px and up) */
+                @media only screen and (min-width: 992px) {...} 
+                
+                /* device orientation is in landscape mode */
+                @media only screen and (orientation: landscape) {
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Responsive Web Design - Frameworks
+
+              * bootstrap
+              * foundation
+              * ...
+            </textarea>
+          </section>
+        </section>
 
         <section data-markdown>
           <textarea data-template>
@@ -268,7 +818,6 @@
             * https://css-tricks.com/child-and-sibling-selectors/
           </textarea>
         </section>
-
 
         
       </div>
