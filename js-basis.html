@@ -1,0 +1,916 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>JS Basis</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/moon.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+            ### Javascript
+            * Created by Brendan Eich at Netscape in 1995
+            * The programming language of the Browser
+            * Dynamic language, loosely typed
+          </textarea>
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+            ### Relationship with Java?
+            ** No Relationship, except for a little bit similarity of syntax.**
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          ### How to run Javascript code
+          * chrome developer tool -> console
+          * firefox developer tool -> Scratchpad
+          * NodeJs REPL (read–eval–print loop)
+          * IDE/editor integration
+        </section>
+        
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Declare variables
+              use `var` to declare a variable
+              ```
+                var a,b,c,d,e;
+                a = 1;
+                b = true;
+                c = 'hello';
+                d = {
+                  attr1: val1; 
+                  attr2: val2
+                };
+                e = function(){ ... };
+                f = [1, 2, 'abc']
+              ```
+              *not declare with var will result in a global variable*
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### define functions
+              use keyword `function` to define functions
+              ```
+                function factorial(n){
+                  if (n == 1){
+                    return 1
+                  }else{
+                    return n * factorial(n - 1)
+                  }
+                }
+
+                factorial(5)
+              ```
+            </textarea>
+          </section>
+        </section>
+        
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Naming conversions
+              * all identifiers: begin with a letter, _ , or $. Subsequent characters can be letters, digits, underscores, or dollar signs
+              * variable names: `camelCase`
+              * function name: `camelCase`, if the function is supposed to be used with the `new` operator, then capitalize.
+              * any identifier can not be a reserved word
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### reserved words
+              Never use reserved words to name things
+              ```
+              abstract boolean break byte case catch char class const 
+
+              continue debugger default delete do double else enum 
+
+              export extends false final finally float for function goto
+
+              if implements import in instanceof int interface long
+
+              native new null package private protected public return
+              
+              short static super switch synchronized this throw throws 
+
+              transient true try typeof var volatile void while with
+               ```
+            </textarea>
+          </section>
+        </section>
+        
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### General Style Guide
+              * 2 spaces – for indentation
+              * Space after keywords `if (condition) { ... }`
+              * Space after function name `function name (arg) { ... }`
+              * Space around Operators ` 1 + 2`
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### More detailed style guide
+              * [airbnb's](https://github.com/airbnb/javascript)
+              * [google's](https://google.github.io/styleguide/jsguide.html)
+              * [JavaScript Standard Style](https://github.com/standard/standard)
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Condition Control Block
+              * if, else statement
+              * switch statement
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              #### if statement - image
+              ![if statement](./images/if-statement.png)
+            </textarea>
+          </section>
+          <section data-markdown>
+              <textarea data-template>
+                #### if statement - code
+                use if statement to make decisions depends on conditions
+                ```
+                if (cond1){
+                  // do something
+                }else{
+                  // do some other things
+                }
+
+                if (cond1){
+                  // do something
+                }else if (cond2){
+                  // do something
+                }else{
+                  //...
+                }
+
+
+                ```
+                **if statement can also be nested**
+              </textarea>
+            </section>
+
+            <section data-markdown>
+              <textarea data-template>
+                #### switch statement - image
+                
+                <img src="./images/switch-statement.jpg" alt="switch statement" width="65%">
+              </textarea>
+            </section>
+
+            <section data-markdown>
+              <textarea data-template>
+                #### switch statement - code
+
+                ```
+                  switch(n) {
+                    case 1: // Start here if n == 1
+                      // Execute code block #1. 
+                      break;
+                    case 2:
+                      // Execute code block #2. 
+                      break;
+                    case 3:
+                      // Execute code block #3. 
+                      break;
+                    default:
+                      // Execute code block #4. 
+                      break;
+                  }
+                ```
+
+                **don't forget the `break` statement**
+              </textarea>
+          </section>
+        </section>
+        
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Loop
+              * for loop
+              * while, do/while
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### for loop
+              ```
+                for ([initialExpression]; [condition]; [incrementExpression]){
+                  statement
+                }
+              ```
+
+              1. initialExpression: excute before loop start
+              2. condition: to determin when the loop should finish
+              3. statement
+              4. incrementExpression: excute after each loop cycle
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### for loop - diagram
+
+              <img src="./images/for-loop.jpg" alt="for loop" width="65%" />
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### for loop - example
+              ```
+              var i, sum;
+              sum = 0
+              for (i = 0 ; i < 10 ; i++){
+                sum += i;
+              }
+              // sum is 45
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### while loop - syntax
+              ```
+              while (condition) {
+                // code block to be executed
+              }
+              ```
+              example
+              ```
+              var i, sum;
+              i = 0;
+              sum = 0;
+              while (i < 10){
+                sum += i;
+                i++;
+              }
+              // sum now is 45
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### while loop -  diagram
+              <img src="./images/JavaScript-while-loop.png" alt="while loop">
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### do while loop
+              ```
+              do{
+                statements
+              }while (expression);
+              ```
+
+              similar to while loop, except for the statments are excuted at least once.
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### do while loop - diagram
+              <img src="./images/JavaScript-do-while-loop.png" alt="do while loop">
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### break and continue
+              * break, terminate the loop righ away
+              * continue, stop this cycle, head to next
+
+              ```
+              var i, sum;
+              for (i = 0, sum = 0; i < 10; i++){
+                if (i % 2 == 0) continue;
+                sum += i
+              }
+              // sum is 25
+
+              var j, fac;
+              j = fac = 1;
+              while (true){
+                if (j == 5) break;
+                fac *= j;
+                j++;
+              }
+              // fac is 24 
+              ```
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Data Types
+              * Number: `3, -2.3, 7.5` ...
+              * Boolean: two values, `true` and `false`
+              * Null: only one value, `null`
+              * Undefined: A variable declared but has not been assigned a value has the value `undefined`.
+              * String: ` "abc" , "hello world" `
+              * Symbol (ES6): `Symbol(42), Symbol('foo')`
+              * Object
+
+              *except Object, all other data types are primitive*
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### typeof
+              |  a       | typeof a  |
+              |------    |-----------| 
+              |  15      | number    |
+              | false    | boolean   |
+              | "hello"  | string    |
+              |undefined | undefined |
+              
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### typeof
+              |  a          | typeof a  |
+              |---------    |-----------|
+              | {a: 1}      | object    |
+              | null        | object    |
+              | [1, 2, 3]   | object    |
+              |function (){} | object    |
+              | NaN         | object    |
+            </textarea>
+          </section>
+        
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Number
+              * JavaScript has a single number type, which is represented as 64-bit floating point
+              * integer: 0, 10, 300, 0xfff09, 1.2e8, 3.5E10
+              * float point number: 1.2, .6, 3.4  (_float point number is not accurate, try `0.1 + 0.2`_)
+              * range: Number.MIN_VALUE .. Number.MAX_VALUE 
+              * infinity: Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY
+
+              *1/0 will not raise error in javascript, instead it returns `Infinity`*
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Number Operations and Combinations
+              * +, - , *, /, %
+              * Math arithmetic operators: Math.pow, Math.round, Math.ceil, Math.floor, Math.abs, Math.max, Math.min, Math.random, Math.sqrt, Math.exp
+              * comparation: >, <, ===, >=, <=
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### NaN
+              * Not a Number
+              * Produced by failed Math functions or when a function trying to parse a number fails
+                * `Math.sqrt(-1)`
+                * `parseInt("abc")`
+                * `'a' * 10`
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              #### weird NaN
+              * `typeof NaN` returns `number`
+              * `NaN === NaN` returns `false`
+
+              *if a!==a, then a is NaN*
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Boolean
+              * Boolean represents a logical entity and can have two values: true, and false
+              * The result of comparation also generates boolean value. eg. `a == 4; b > 9`
+              * values convert to false when used in if condition: 
+                `undefined, null, 0, -0, '', NaN`
+            </textarea>
+          </section>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### Null & undefined
+            * They both indicate absence of value
+            * Null indicates that the value is null
+            * undefined indicates not defined. 
+              * `var a; console.log(a)` prints undefined
+              * `var b = {}; console.log(b.age)` prints undefined
+              * functions that have no return value return undefined `function a(){}; a() == undefined`
+              * absence of function parameters `function a(b){ b === undefined}; a()`
+          </textarea>
+        </section>
+        
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### String
+              * literal `'abc'` or `new String('abc')`, prefer literal
+              * string literal can be wrapped in single quotes or double quotes `"hello", 'world'`, prefer single quotes
+              * no character type, use single character string `'a', 'b'`
+
+              * immutable. `var a = "abc"; a[1] = 'F';` a is still "abc" not "aFc"
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Operations on String I
+              * `length` property return its length
+              * get character by index(0 based): `[], charAt`, eg `var a="abc";` a[1] and a.charAt(1) both return "b"
+              * combine two strings: `+, concat`, `"hi" + " js"` and `"hi".concat(" js")` both produce "hi js"
+              * transformation: `toLowerCase, toUpperCase, toLocaleLowerCase, toLocaleUpperCase, replace`
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Operations on String II
+              * tester: `startsWith, endsWith, search, includes`
+              * substring: `substring, slice`
+              * use `split` to make array `"abc".split("")` => `['a', 'b', 'c']`
+
+              *more info [String | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)*
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Object
+              * object literal
+
+              ```
+              var empty_object = {};
+              var stooge = {
+                firstName: 'Jerome',
+                "last-name": "Howard",
+                address: {
+                  address1: '1 Howard St',
+                  city: 'New York'
+                }
+              };
+              ```
+
+              * created by new operator
+
+              ```
+              function Person(firstName, lastName){
+                this.firstName = firstName;
+                this.lastName = lastName
+              }
+              var mickey = new Person('Mickey', 'Green')
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Retrieval
+              * stooge['last-name'] 
+              * stooge.firstName
+              * stooge.address.city
+            </textarea>
+          </section>
+          
+          <section data-markdown>
+            <textarea data-template>
+              #### Update
+              * stooge['last-name'] = 'Page'
+              * stooge.firstName = 'George'
+
+              *we will revisit object in future classes*
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Function
+              * in javascript, functions are also objects
+              * define function
+              ```
+                function add(a, b){
+                  return a + b;
+                }
+
+                var substract = function(a, b){
+                  return a - b;
+                };
+              ```
+              * invoke function
+              ```
+                add(1, 2); // returns 3
+                substract(10, 3); // returns 7
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Parameters
+              * flexible argument amount, when invoked, if:
+                * given parameters are less than defined, the laking one will have undefined value
+                * given parameters are more than defined, redundant parameters are discarded automatically
+
+              ```
+              function add(a, b){
+                return a + b;
+              }
+              add(); // returns NaN
+              add(1); // returns NaN
+              add(1,2); // returns 3
+              add(1,2,3); // returns 3
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Parameter's type
+              * there is no limitation on which type can be passed as a parameter. That is to say, any javascript data type can be passed, including function
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### arguments
+              
+              ```
+                function sum(){
+                  if (arguments.length > 0){
+                    return [].reduce.call(arguments, function(memo, e){
+                      return memo + e;
+                    })
+                  }
+                }
+              ```
+
+              * arguments is not an array, but array alike
+              * arguments has length property
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### function as parameter - higher order function
+
+              * function can be passed as an parameter
+
+              ```
+                [1,2,3,4].forEach(function(el){
+                  console.log(el);
+                })
+                // here we pass an anomynous function to
+                // forEach as a parameter
+
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### return value
+              * javascript function can return any type of value using return statement
+              * if a function doesn't have an explicit return value, it returns undefined.
+              * function as return value can form curry and closure.
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### variable scope
+              * Scope in a programming language controls the visibility and lifetimes of variables and parameters
+              ```
+              var a = 1;
+              function add(a, b){
+                var m = 100;
+                console.log('a = ' + a);
+                return a + b;
+              }
+              add(5, 6); // a = 5 is printed in the console
+              console.log(m); // ReferenceError: m is not defined
+              ```
+              * javascript has no block scope
+              ```
+              function b(){
+                if (true){
+                  var c  = 10;
+                }
+                console.log('c = ' + c);
+              }
+              b(); // c = 10 is printed in the console
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              We will revisit _function_ in the future classes
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Array
+              * in javascript, array has the type of *object*
+              * array can have different types of elements
+              * array can also be an element of another array
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              #### create
+              * literal 
+
+              ```
+                var arr1 = [1, 2, 3, 'a', 'b']
+                var arr2 = [3, 'b', ['mc', ed], false, {a: 1}]
+              ```
+              
+              * created by call `new Array()`
+
+              ```
+                var a = new Array(); // []
+                var b = new Array(5); // an array with length 5, all elements are undefined
+                var c = new Array(5,6); // [5, 6]
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### read and write array element
+              ** zero based index ** 
+              ```
+                var a = [1, 2, 3, 4]
+              ```
+              * read `a[1] // get 2`
+              * write `a[1] = 8 // array now is [1, 8, 3, 4]`
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### add / remove elements from array
+              ```
+                var a = [1, 2, 3];
+                var b = ['a', 'b', 'c'];
+                var c = [6, 7, 8];
+                var d = ['e', 'f', 'g']
+              ```
+              * append one element, use push method. eg `a.push(4)`, a now is `[1, 2, 3, 4]`
+              * remove last one, use pop method. eg `b.pop()`, b is now `['a', 'b']`
+              * insert one in the beginning, use unshift method. eg. `c.unshif(5)`, c is now `[5, 6, 7, 8]`
+              * remove one from the beginning, use shift. eg. `d.shift()`, d is now `['f', 'g']`
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### add/remove/replace array element
+              *splice method*
+
+              ```
+                array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+              ```
+
+              examples:
+              ```
+              var myFish1 = ['angel', 'clown', 'mandarin', 'sturgeon'];
+              myFish1.splice(2, 0, 'drum');
+              // myFish1 is ["angel", "clown", "drum", "mandarin", "sturgeon"] 
+
+              var myFish2 = ['angel', 'clown', 'drum', 'mandarin', 'sturgeon'];
+              myFish2.splice(3, 1);
+              // myFish2 is ["angel", "clown", "drum", "sturgeon"]
+
+              var myFish3 = ['angel', 'clown', 'drum', 'sturgeon'];
+              myFish3.splice(2, 1, 'trumpet');
+              // myFish3 is ["angel", "clown", "trumpet", "sturgeon"]
+              
+              ```
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              #### array Iterating
+              * `for`, `while` loop
+
+              ```
+              var a = [1, 2, 3]
+              var i, length;
+              for (i = 0; i < length; i++){
+                //get current element by a[i]
+                console.log(a[i])
+              }
+              ```
+
+              * `forEach` method, preferred
+
+              ```
+              arr.forEach(function callback(currentValue[, index[, array]]) {
+                  //your iterator
+              }[, thisArg]);
+
+              [1, 2, 3].forEach(function(el, i){
+                console.log('current element : ' + el);
+                console.log('current index : ' + i);
+              });
+
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### map
+              ** _map_ method creates a new array with the results of calling a provided function on every element in the calling array. **
+
+              ```
+                arr.map(function callback(currentValue[, index[, array]]) {
+                  // Return element for new_array
+                }[, thisArg]) 
+
+                var roots = [1, 4 ,9].map(Math.sqrt);
+                // roots [1, 2, 3];
+
+                var double = [1, 2, 3].map(function(el){
+                  return el * 2;
+                })
+                // double [2, 4, 6]
+
+
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### reduce
+              ** reduce() method executes a reducer function (that you provide) on each member of the array resulting in a single output value **
+              
+              ```
+                arr.reduce(callback[, initialValue]);
+              ```
+              * callback function takes 4 arguments:
+                1. accumulator
+                2. currentValue
+                3. currentIndex (Optional)
+                4. array (Optional)
+
+              ```
+                [1,2,3,4,5].reduce(function(memo, cv){
+                  return memo + cv;
+                });  // sum, 15
+              ```
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### other common methods
+              * concat  `[1,2].concat([3,4]) // [1,2,3,4]`
+              * reverse `[1,2,3,4].reverse() // [4,3,2,1]`
+              * filter 
+              ```
+              [1,2,3,4,5].filter(function(e){
+                  return e % 2 == 0
+              }) 
+              //returns [2, 4]
+              ```
+              * join `['h','e','l','l','o'].join('') // 'hello'`
+              * sort `[3,5,2,7,1].sort() // [1,2,3,5,7]`
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              *more, please refer [Array | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)*
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Regular Expression
+              * create
+                * var re = /ab+c/;
+                * var re = new Regex('ab+c')
+              * tester: test() method `/^\d+/.test('123b')`
+              * capture: exec() method 
+              ```
+              /a(\d+)b(\d+)/.exec('a123b987');
+              // ["a123b987", "123", "987", 
+              index: 0, input: "a123b987", groups: undefined]
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### String methods accept regex
+              * match
+              * replace
+              * search
+              * split
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              * [online js tester](https://regex101.com/)
+              * more, visit [Regex | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions)
+
+            </textarea>
+          </section>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### Thank you!
+          </textarea>
+        </section>
+        
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        history: true,
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
