@@ -84,8 +84,48 @@
               ```
             </textarea>
           </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Comments
+
+              ```
+                // single-line comment.
+
+                /* This is also a comment */ 
+
+                /*
+                 * This is yet another comment. 
+                 * It has multiple lines.
+                */
+              ```
+            </textarea>
+          </section>
         </section>
         
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Semicolon
+              Certain ECMAScript statements (empty statement, variable statement, expression statement, do-while statement, continue statement, break statement, return statement, and throw statement) must be terminated with semicolons.
+              Such semicolons may always appear explicitly in the source text. For convenience, however, such semicolons may be omitted from the source text in certain situations.
+
+              [ecma-262 | 5.1 | #sec-7.9](http://www.ecma-international.org/ecma-262/5.1/#sec-7.9)
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### common rules about semicolon auto insertion
+              * Semicolons are only ever inferred before a }, at the end of a line, or at the end of a program.
+              * Semicolons are only ever inferred when the next token cannot be parsed.
+              * Never omit a semicolon before a statement beginning with (, [, +, -, or /.
+              * When concatenating scripts, insert semicolons explicitly between scripts.
+              * Never put a newline before the argument to return, throw, break, continue, ++, or --.
+              * Semicolons are never inferred as separators in the head of a for loop or as empty statements.
+            </textarea>
+          </section>
+        </section>
         <section>
           <section data-markdown>
             <textarea data-template>
@@ -375,7 +415,7 @@
               | null        | object    |
               | [1, 2, 3]   | object    |
               |function (){} | object    |
-              | NaN         | object    |
+              | NaN         | number    |
             </textarea>
           </section>
         
@@ -665,6 +705,69 @@
           </section>
         </section>
 
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Exception Handling - throw
+              * use throw to throw an error
+              
+              ```
+                function division(dividend, divisor){
+                  if (divisor === 0){
+                    throw 'divisor should not be zero'
+                  }else{
+                    return dividend/divisor
+                  }
+                }
+
+                division(10, 0) // error raised
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### Exception handling - catch
+              * use try/catch/finally block to handle exception
+                * try block - code to be tested if there are any exception thrown
+                * catch - handle exception
+                * finally (optional) - code excuted whether there is exception or not
+
+              ```
+              try {
+                tryCode - Block of code to try
+              }
+              catch(err) {
+                catchCode - Block of code to handle errors
+              } 
+              finally {
+                finallyCode
+              }
+              ```
+
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              #### try/catch/finally example
+              ```
+              try {
+                division(5, 0);
+              } catch(e) {
+                console.log(e)
+              }
+
+              try {
+                division(5, 0);
+              } catch(e) {
+                console.log(e);
+              } finally {
+                console.log('done');
+              }
+              ```
+            </textarea>
+          </section>
+        </section>
         <section>
           <section data-markdown>
             <textarea data-template>
