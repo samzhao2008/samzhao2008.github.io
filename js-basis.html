@@ -859,7 +859,7 @@
               ```
               var a = [1, 2, 3]
               var i, length;
-              for (i = 0; i < length; i++){
+              for (i = 0, length = a.length; i < length; i++){
                 //get current element by a[i]
                 console.log(a[i])
               }
@@ -971,6 +971,54 @@
 
           <section data-markdown>
             <textarea data-template>
+              #### common pattern
+              * regular string match itself, eg /abc/ matches string 'abc'
+              * special characters having their own matching pattern
+              * match special characters must use '\' to escape
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              |   Character |       meaning       | 
+              |-------------|---------------------|
+              | ^ | match beginning of string  |
+              | $ | match the end of string    | 
+              | . | match any single character |
+              | * | match the preceding expression 0 or more times |
+              | ? | match the preceding expression 0 or 1 time |
+              | + | matches the preceding expression 1 or more times | 
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              |   Character |       meaning       | 
+              |-------------|---------------------|
+              | {n} | match the preceding expression n times|
+              | {n, m} | match the preceding expression n to m times|
+              | {n,} |  match the preceding expression at least n times |
+              | [xyz] | matches any one of the characters in the brackets |
+              | [^xyz]| matches anything that is not enclosed in the brackets |
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              |   Character |       meaning       | 
+              |-------------|---------------------|
+              |   \d | match a single number digit |
+              | \D   | match a non number character|
+              | \b   | match a white space character, including space, tab, return, line breaker|
+              | \B   | match a non space character |
+              | \w   | match word character, number, alphabet, and underscore |
+              | \W   | match non word character |
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
               #### String methods accept regex
               * match
               * replace
@@ -984,6 +1032,190 @@
               * [online js tester](https://regex101.com/)
               * more, visit [Regex | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions)
 
+            </textarea>
+          </section>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### Type Coercion
+            * the process to convert value from one type to another
+            * explicit coercion, type casting in some programming language, obviously change one type to antoher
+            * implicit coercion, sometimes not noticable, you even don't realize coercion happens. 
+          </textarea>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Explicit Coercison
+              * convert to String using `String()` function
+              * convert to Number using `Number()` function
+              * convert to Boolean using `Boolean()` function
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### primitive convert to String
+              * primitive values convert to string naturally
+
+
+              ```
+              String(3.14); // '3.14'
+              String(-3); // '-3'
+              String(10000000000/0.00000000001); // "1e+21"
+              String(null);  // 'null'
+              String(undefined); // 'undefined'
+              String(true);   // 'true'
+              String(false);  // 'false'
+              String(NaN); // 'NaN'
+              ```
+
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### object convert to String
+
+              * object convert to string by invoking its toString method
+              * if the object has no toString method, invoke its valueOf method, then make the value of valueOf to String
+              * if the object has no toString and valueOf method, a type error will throw
+
+              ```
+              String({}); // [object Object]
+              String([1]); // '1'
+              var a = {
+                toString: null,
+                valueOf: null
+              }
+              String(a); // error is thrown
+              ```
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### primitive convert to Number
+
+              ```
+              Number(null)          // 0
+              Number(undefined)     // NaN
+              Number(true)          // 1
+              Number(false)         // 0
+              Number(" 123 ")        // 123
+              Number("-3.21")      // -3.21
+              Number("\n")          // 0
+              Number(" 12s ")       // NaN
+              Number(123)           // 123
+
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+            #### object convert to Number
+            * object convert to string by invoking its valueOf method
+            * if the object has no valueOf method, invoke its toString method, then make the value of toString to number
+            * if the object has no neither valueOf nor toString method, a type error will throw
+
+            ```
+              Number({})  // NaN
+              Number([1]) // 1
+              var a = {
+                valueOf: function(){return 10}
+              }
+              Number(a) // 10
+            ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### value convert to Boolean
+              * '', 0, -0, NaN, null, undefined, false will be converted to false
+
+                ```
+                Boolean('')           // false
+                Boolean(0)            // false     
+                Boolean(-0)           // false
+                Boolean(NaN)          // false
+                Boolean(null)         // false
+                Boolean(undefined)    // false
+                Boolean(false)        // false
+                ```
+
+              * all other values will be converted to true
+
+              ```
+                Boolean('0')      // true
+                Boolean('false')  // true
+                Boolean({})       // true
+                Boolean([]])     // true
+
+              ```
+
+            </textarea>
+          </section>
+          
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### implicit coercion
+              * type coercison happens under the scene.
+              * usually happens when apply operators to values of different types 
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### where it happens
+              * if condition and logical operators ( || && !), values are converted to Boolean type
+              * comparison operators (>, <, <=,>=), converted to Number
+              * bitwise operators ( | & ^ ~), converted to Number
+              * unary + operator converted to Number
+              * arithmetic operators (- + * / % ) values are normally converted to Number (exception)
+              * loose equality operator == (incl. !=), converted to Number(exception)
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### where it happens - special case
+              * for arithmetic operators +, if any one of the operator is string, the other will be converted to string.
+              * When applying == to null or undefined, numeric conversion does not happen. null equals only to null or undefined
+              * NaN does not equal to anything includes itself
+              * == does not trigger number coercison when two values are both string
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### logic && and ||
+              Logical operators `&&` and `||` do boolean conversions internally, but actually return the value of original operands
+              * a && b, if a is converted to true, return b; if a is converted to false, return a.
+              * a || b, if a is converted to true, return a; if a is converted to false, return b.
+
+              ```
+              'hello' && 123 // 123
+              0 && 'abc'     // 0
+              'hello' || 123 // 'hello'
+              0 || 'abc'     // 'abc'
+
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### more reading
+              * [JavaScript type coercion explained](https://medium.freecodecamp.org/js-type-coercion-explained-27ba3d9a2839)
             </textarea>
           </section>
         </section>
