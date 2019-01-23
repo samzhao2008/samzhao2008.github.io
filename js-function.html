@@ -1,0 +1,500 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>JS Basis</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/moon.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### IIFE (Immediately Invoked Function Expression)
+              * function is defined and invoked at the same place
+              * variable defined inside the function is not visible to outside
+              * a common way to create encapsulation
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ```
+              (function () { 
+                  var internalName = "Tom";
+              })();
+              internalName; // ReferenceError will raise
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ```
+              (function(a, b){
+                var base = 10;
+                return a + b + base;
+              })(1, 2)  // returns 13
+              ```
+            </textarea>
+          </section>
+        </section>
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Hoisting
+              
+              * Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their scope before code execution
+              * Two kinds of scope:
+                  1. global scope
+                  2. function scope
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              * function can be called before its definition using function keyword
+
+              ```
+              helloWorld(); // output 'hello world' to console 
+              function helloWorld(){
+                console.log('hello world');
+              }
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              * variable's definition is hoisted, initialization not
+
+              ```
+              console.log(a); // undefined
+              var a = 1;
+
+              helloWorld(); // Uncaught TypeError: helloWorld is not a function.
+              // helloWorld actually has the value undefined
+
+              var helloWorld = function() {
+                console.log('hello world');
+              }
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              * functions are hoisted first, then variables
+              
+              ```
+              var helloWorld = function(){
+                console.log('HELLO WORLD');
+              };
+
+              function helloWorld(){
+                console.log('hello world');
+              }
+              
+              helloWorld(); // 'HELLO WORLD'
+              
+              ```
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Recursion
+              * function can call itself.
+
+              ```
+              function factorial( n ) {
+                if ( n === 1 ) {
+                  return 1;
+                } else {
+                  return n * factorial( n - 1 );
+                }
+              }
+              ```
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### analysis of factorial function
+              ```
+              factorial(5)
+              5 * factorial(4)
+              5 * (4 * factorial(3))
+              5 * (4 * (3 * factorial(2)))
+              5 * (4 * (3 * (2 * factorial(1))))
+              5 * (4 * (3 * (2 * 1)))
+              5 * (4 * (3 * 2))
+              5 * (4 * 6)
+              5 * 24
+              120
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Tower of Hanoi
+
+              <img src="./images/tower-of-hanoi.png" alt="tower-of-hanoi">  
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              #### Tower of Hanoi - recursion solution I
+              ```
+              /** 
+               * 
+               * @param  {number} disc how many disks
+               * @param  {string} src  initial rod
+               * @param  {string} aux  auxiliary rod
+               * @param  {string} dst  destination rod
+               * @return {undefined} nothing returned, print out the process.
+               */
+              function hanoi(disc, src, aux, dst){
+                if ( disc <= 0 ) return
+                hanoi(disc - 1, src, dst, aux);
+                console.log('move disk ' + disc + ' from ' + src + ' to ' + dst);
+                hanoi(disc - 1, aux, src, dst);
+              }
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Tower of Hanoi - recursion solution II
+              
+              ```
+              hanoi(3, 'src', 'aux', 'dst');
+
+              // move disk 1 from src to dst
+              // move disk 2 from src to aux
+              // move disk 1 from dst to aux
+              // move disk 3 from src to dst
+              // move disk 1 from aux to src
+              // move disk 2 from aux to dst
+              // move disk 1 from src to dst
+
+
+              ```
+
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Functions as parameters
+              * In Javascript, functions can be passed as parameters to other functions
+              * We have seen a few, such as array methods `forEach`, `map` and `reduce`
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### self written forEach function
+              ```
+              function forEach(func, array){
+                var i, len;
+                len = array.length;
+                for (i = 0; i < len; i++) {
+                  func(array[i], i);
+                }
+              }
+
+              forEach(function(element, index){
+                console.log('the ' + index + 'th element is ' + element);
+              }, [1, 2, 3, 4])
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### self written map function
+              ```
+              function map(func, array){
+                var i, len, newArray;
+                len = array.length;
+                newArray = [];
+                for (i = 0; i < len; i++){
+                  newArray[i] = func(array[i], i);
+                }
+                return newArray;
+              }
+
+              map(function(ele, index){
+                return ele * 2;    
+              }, [1,2,3,4]);
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### self written reduce function
+
+              ```
+              function reduce(func, array, initialValue){
+                var i, memo, len;
+                memo = initialValue;
+                len = array.length;
+                for (i = 0; i < len; i++){
+                  if (memo === undefined){
+                    memo = array[i];
+                  }else{
+                    memo = func(memo, array[i], i);
+                  }
+                }
+                return memo;
+              }
+
+              reduce(function(memo, ele, index){
+                return memo + ele;
+              }, [1,2,3,4]);
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Callback functions - window.setTimeout
+              ```
+                window.setTimeout( handler [, timeout [, arguments... ] ] )
+
+                // handler is a callback function which will be called after timeout
+
+                window.setTimeout(function(){
+                  console.log('hello js')
+                }, 3000);
+
+
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Callback functions - addEventListener
+              ```
+                target.addEventListener(type, listener[, options]);
+
+                document.querySelector('#event-listener-demo')
+                        .addEventListener('click', function(event){
+                          alert('hello js')
+                        })
+
+              ```
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### function as return value
+              * curry
+              * closure
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### curry
+              currying is the process of breaking down a function into a series of functions that each take a single argument.
+
+              ```
+              function sum(a){
+                return function(b){
+                  return a + b;
+                }
+              }
+              
+              sum(2)(3); // returns 5
+
+              var add5 = sum(5);
+              add5(1); // returns 6
+              add5(5); // returns 10
+
+              var add7 = sum(7);
+              add7(2); // returns 9
+              add7(5); // returns 12
+
+
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Closure
+              * A closure is the combination of a function and the lexical environment within which that function was declared. 
+              * If we define functions within function, then the inner functions can get access to the parameters and variables of the functions they are defined within
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Lexical scope vs dynamic scope
+              * Lexical scope: In languages with lexical scope (also called static scope), name resolution depends on the location in the source code and the lexical context, which is defined by where the named variable or function is defined
+              * dynamic scope: in languages with dynamic scope the name resolution depends upon the program state when the name is encountered which is determined by the execution context or calling context
+              * Javascript uses Lexical scope.
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Lexical scope example
+
+              ```
+              function a(){
+                var str = 'hello world';
+                var returnStr = function(){
+                  return str;
+                };
+                return returnStr;
+              }
+
+              var str = 'Well Done!!!';
+              
+              var returnStr = a();
+
+              returnStr(); // returns 'hello world' or 'Well Done!!!'?
+
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### closure - example
+
+              ```
+                function counter(){
+                  var init = 0;
+                  var increaseOne = function(){init += 1;};
+                  var decreaseOne = function(){init -= 1;};
+                  var getValue = function(){ return init;};
+                  return {
+                    increaseOne: increaseOne,
+                    decreaseOne: decreaseOne,
+                    getValue: getValue
+                  }
+                }
+
+                var init = 10;
+
+                var myCounter = counter();
+                myCounter.increaseOne();
+                myCounter.getValue(); // return 1
+                myCounter.increaseOne();
+                myCounter.increaseOne();
+                myCounter.decreaseOne(); 
+                myCounter.getValue(); // return 2
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### closure - common mistake
+              ```
+              function foo(){
+                var arr, result, i, length;
+                arr = [1, 2, 3, 'a', 'b', 'c'];
+                result = [];
+                length = arr.length;
+                for (i = 0; i < length; i++){
+                  result[i] = function(){
+                    console.log('the ' + i + 'th element is ' + arr[i])
+                  }
+                }
+                return result;
+              }
+
+              var funcArray = foo();
+              funcArray[0]; // what is printed in console?
+              funcArray[3]; // what is printed in console?
+
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### closure - common mistake correction
+              ```
+              function foo(){
+                var arr, result, i, length;
+                arr = [1, 2, 3, 'a', 'b', 'c'];
+                result = [];
+                length = arr.length;
+                for (i = 0; i < length; i++){
+                  result[i] = (function(j){
+                    return function(){
+                      console.log('the ' + j + 'th element is ' + arr[j])
+                    }
+                  })(i)
+                }
+                return result;
+              }
+
+              var funcArray = foo();
+              funcArray[0](); // what is printed in console?
+              funcArray[3](); // what is printed in console?
+
+              ```
+            </textarea>
+          </section>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        history: true,
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+
+</html>
