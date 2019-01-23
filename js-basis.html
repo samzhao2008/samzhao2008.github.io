@@ -1080,9 +1080,9 @@
             <textarea data-template>
               #### object convert to String
 
-              * object convert to string by invoking its toString method
-              * if the object has no toString method, invoke its valueOf method, then make the value of valueOf to String
-              * if the object has no toString and valueOf method, a type error will throw
+              * object convert to string by invoking its toString method, if the result is a primitive, then return it
+              * if the object has no toString method, or toString returns a non primitive, invoke its valueOf method, if the result is a primitive, then return it
+              * if the object has no toString and valueOf method or they return a non primitive, a type error will throw
 
               ```
               String({}); // [object Object]
@@ -1119,15 +1119,15 @@
           <section data-markdown>
             <textarea data-template>
             #### object convert to Number
-            * object convert to string by invoking its valueOf method
-            * if the object has no valueOf method, invoke its toString method, then make the value of toString to number
-            * if the object has no neither valueOf nor toString method, a type error will throw
+            * object convert to string by invoking its valueOf method, return the result if it's a primitive
+            * if the object has no valueOf method, or valueOf returns a non primitive, invoke its toString method, return the result if it's a primitive
+            * if the object has no neither valueOf nor toString method, or they return a non primitive, a type error will throw
 
             ```
               Number({})  // NaN
               Number([1]) // 1
               var a = {
-                valueOf: function(){return 10}
+                valueOf: function(){return '10'}
               }
               Number(a) // 10
             ```
@@ -1208,6 +1208,32 @@
               'hello' || 123 // 'hello'
               0 || 'abc'     // 'abc'
 
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### examples
+
+              ```
+              true + false          // 1
+              12 / "6"         // 2
+              "number" + 15 + 3     // 'number153'
+              15 + 3 + "number"     // '18number'
+              [1] > null            // true
+              "foo" + + "bar"       // 'fooNaN'
+              'true' == true        // false
+              false == 'false'      // false
+              null == ''            // false
+              !!"false" == !!"true" // true
+              ['x'] == 'x'          // true 
+              [] + null + 1         // 'null1'
+              [1,2,3] == [1,2,3]    // false
+              {}+[]+{}+[1]          // '0[object Object]1'
+              !+[]+[]+![]           // 'truefalse'
+              new Date(0) - 0       // 0
+              new Date(0) + 0       // 'Thu Jan 01 1970 02:00:00(EET)0'
               ```
             </textarea>
           </section>
