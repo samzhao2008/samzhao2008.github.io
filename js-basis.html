@@ -1189,9 +1189,11 @@
             <textarea data-template>
               #### where it happens - special case
               * for arithmetic operators +, if any one of the operator is string, the other will be converted to string.
+              * When two operator are the same data type, == return the result of x === y
               * When applying == to null or undefined, numeric conversion does not happen. null equals only to null or undefined
               * NaN does not equal to anything includes itself
-              * == does not trigger number coercison when two values are both string
+
+              [Abstract Equality Comparison ECMASCRIPT](https://www.ecma-international.org/ecma-262/6.0/index.html#sec-abstract-equality-comparison)
             </textarea>
           </section>
 
