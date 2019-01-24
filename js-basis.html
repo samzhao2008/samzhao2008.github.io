@@ -1080,8 +1080,8 @@
             <textarea data-template>
               #### object convert to String
 
-              * object convert to string by invoking its toString method, if the result is a primitive, then return it
-              * if the object has no toString method, or toString returns a non primitive, invoke its valueOf method, if the result is a primitive, then return it
+              * object convert to string by invoking its toString method, if the result is a primitive, return `String(result)`
+              * if the object has no toString method, or toString returns a non primitive, invoke its valueOf method, if the result is a primitive, return `String(result)`
               * if the object has no toString and valueOf method or they return a non primitive, a type error will throw
 
               ```
@@ -1119,8 +1119,8 @@
           <section data-markdown>
             <textarea data-template>
             #### object convert to Number
-            * object convert to string by invoking its valueOf method, return the result if it's a primitive
-            * if the object has no valueOf method, or valueOf returns a non primitive, invoke its toString method, return the result if it's a primitive
+            * object convert to number by invoking its valueOf method, return the Number(result) if it's a primitive
+            * if the object has no valueOf method, or valueOf returns a non primitive, invoke its toString method, return the Number(result) if it's a primitive
             * if the object has no neither valueOf nor toString method, or they return a non primitive, a type error will throw
 
             ```
@@ -1239,6 +1239,7 @@
           <section data-markdown>
             <textarea data-template>
               #### more reading
+              * [Type Conversion | ECMASCRIPT Specification](https://www.ecma-international.org/ecma-262/6.0/index.html#sec-type-conversion)
               * [JavaScript type coercion explained](https://medium.freecodecamp.org/js-type-coercion-explained-27ba3d9a2839)
             </textarea>
           </section>

@@ -158,6 +158,42 @@
 
           <section data-markdown>
             <textarea data-template>
+              #### tail recursion
+              A recursive function is **tail recursive** when recursive call is the last thing executed by the function
+
+              ```
+              function tailRecFactorial( n ){
+                return _factorial( n, 1 )
+              }
+
+              function _factorial( n, result ){
+                if (n <= 1) return result;
+                else {
+                  return _factorial( n - 1, result * n)
+                }
+              }
+              ```
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### analysis of tailRecFactorial function
+              ```
+              tailRecFactorial( 5 )
+              _factorial( 5, 1 )
+              _factorial( 4, 5 )   // 5 * 1
+              _factorial( 3, 20 )  // 4 * 5 * 1
+              _factorial( 2, 60 )  // 3 * 4 * 5 * 1
+              _factorial( 1, 120 ) // 2 * 3 * 4 * 5 * 1
+              120
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
               #### Tower of Hanoi
 
               <img src="./images/tower-of-hanoi.png" alt="tower-of-hanoi">  
@@ -471,6 +507,76 @@
               funcArray[3](); // what is printed in console?
 
               ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### closure - fibonacci sequence
+
+              Each number in the sequence is the sum of the two numbers that precede it. So, the sequence goes: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, and so on. The mathematical equation describing it is Xn+2= Xn+1 + Xn. n == 0, Xn = 0; n == 1, Xn = 1
+
+              ```
+              function fibonacci1( n ) {
+                if ( n == 0 || n == 1){
+                  return n;
+                }else{
+                  return fibonacci1( n - 1 ) + fibonacci1( n - 2 )
+                }
+              }
+              ```
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### closure - fibonacci (duplication calculation)
+              <img src="./images/fib-dplication.png" alt="fib-dplication" width="80%">
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### closure - fibonacci cache
+
+              ```
+              function fibonacci2(){
+                var cache = {}
+                var fibonacci = function ( n ){
+                  if (cache[n]) {
+                    return cache[n]
+                  }
+                  else if ( n == 0 || n == 1){
+                    return n;
+                  }else{
+                    cache[n] =  fibonacci( n - 1 ) + fibonacci( n - 2 )
+                    return cache[n]
+                  }
+                }
+                return fibonacci;
+              }
+                
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### closure - compare two fibonacci functions
+              
+              ```
+              var start1 = new Date();
+              var val1 = fibonacci1(40);
+              var millsec1 = new Date() - start1;
+              console.log('fibonacci1 takes ' + millsec1 + ' millseconds, result: ' + val1);
+
+              var start2 = new Date();
+              var fib = fibonacci2();
+              var val2 = fib(40);
+              var millsec2 = new Date() - start2;
+              console.log('fibonacci2 takes ' + millsec2 + ' millseconds, result: ' + val2); 
+              ``` 
             </textarea>
           </section>
         </section>
