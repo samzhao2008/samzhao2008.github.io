@@ -1,0 +1,702 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>ES2015 a.k.a. ES6</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/moon.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### let && const
+
+              * `let` for variable could be changed later, `const` for variable can not be changed
+              * block scoped
+              * not hoisted in its current scope
+              * `for`, `for-in` and `for-of` loops create a new binding with each iteration through the loop
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### let reassignable, const not
+              ```
+              let a = 1;
+              const b = 'hello';
+
+              a = 2;
+              console.log(a); // 2
+
+              b = 'world'; // error throwed, TypeError: Assignment to constant variable.
+
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### block scoped
+              ```
+              if (true) {
+                let a = 1;
+              }
+
+              console.log(a); // ReferenceError: a is not defined
+
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### not hoisted
+
+              ```
+
+              console.log(a); // ReferenceError: a is not defined
+
+              let a = 10;
+
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### behavior in `for`, `for-in`, `for-of` loop
+
+              ```
+              const arr = [1, 2, 3];
+              const result = [];
+
+              for (let i = 0, len = arr.length; i < len; i++ ){
+                result.push(function(){console.log(arr[i])})
+              }
+
+              result[0](); // output 1
+              result[1](); // output 2
+              result[2](); // output 3
+              ```
+            </textarea>
+          </section>
+        </section>
+        
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Template String
+              * syntax: use ` `` ` to quote string
+              * Multi line Strings
+              * String Interpolation
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Multi line String
+
+              ```
+              const m = `hello
+                world
+                in 
+                "javascript" `;
+
+              console.log(m);
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### String Interpolation
+              ```
+              const firstName = 'Yong';
+              const lastNmae = 'Zhao';
+
+              const greeting = `hello, everyone. my name is ${firstName} ${lastNmae}`
+
+              console.log(greeting);
+              ```
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Object Literal Syntax Extensions
+              * Property Initializer Shorthand
+              * Concise Methods
+              * Computed Property Names
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Property Initializer Shorthand
+              ```
+              function createPerson(name, age) {
+                return {
+                    name: name,
+                    age: age
+                };
+              }
+
+              function createPerson(name, age) {
+                return {
+                    name,
+                    age
+                };
+              }
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Concise Methods
+              ```
+              var person = {
+                name: "Nicholas",
+                sayName: function() {
+                    console.log(this.name);
+                }
+              };
+
+              var person = {
+                name: "Nicholas",
+                sayName() {
+                    console.log(this.name);
+                }
+              };
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Computed Property Names
+              ```
+              var suffix = " name";
+
+              var person = {
+                  ["first" + suffix]: "Nicholas",
+                  ["last" + suffix]: "Zakas"
+              };
+
+              console.log(person["first name"]);      // "Nicholas"
+              console.log(person["last name"]);       // "Zakas"
+              ```
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### arrow function
+              * No `this` and `arguments` bindings
+              * Cannot be called with new 
+              * No prototype 
+              * Can’t change `this`
+              * No `arguments` object
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### syntax - no argument
+
+              ```
+              var getValue = ()=> 'ES6';
+              
+              // effectively equivalent to:
+
+              var sayHello = function(){
+                return 'ES6';
+              }
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### syntax - one argument
+
+              ```
+              var echo = value => value;
+
+              // effectively equivalent to:
+
+              var echo = function(value) {
+                  return value;
+              };
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### syntax - more that one arguments
+
+              ```
+              var getFullName = (firstName, lastName) => {
+                const fullName = `${firstName} ${lastName}`;
+                return fullName
+              }
+              
+              // effectively equivalent to:
+
+              var getFullName = function(firstName, lastName){
+                var fullName = firsName + ' ' + lastName;
+                return fullName;
+              }
+
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### `this` is decided by the outter scope `this`
+
+              ```
+              const obj = {
+                version: 'ES6',
+                delayPrintVersion(){
+                  setTimeout(()=>{
+                    console.log(this.version);
+                  },2000)
+                }
+              }
+
+              obj.delayPrintVersion()
+              ```
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### function parameters
+              * Default parameters
+              * Rest parameters
+              * Spread parameters
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+            ```
+              function f(x, y=12) {
+                // y is 12 if not passed (or passed as undefined)
+                return x + y;
+              }
+              f(3) == 15
+
+              function f(x, ...y) {
+                // y is an Array
+                return x * y.length;
+              }
+              f(3, "hello", true) == 6
+
+              function f(x, y, z) {
+                return x + y + z;
+              }
+              // Pass each elem of array as argument
+              f(...[1,2,3]) == 6
+
+            ```
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Destructuring for Easier Data Access
+              * Object Destructuring
+              * Array Destructuring
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Object Destructuring
+
+              ```
+              let node = {
+                type: "Identifier",
+                name: "foo"
+              };
+
+              let { type, name } = node;
+
+              console.log(type);      // "Identifier"
+              console.log(name);      // "foo"
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Array Destructuring
+              ```
+              let colors = [ "red", "green", "blue" ];
+
+              let [ firstColor, secondColor ] = colors;
+
+              console.log(firstColor);        // "red"
+              console.log(secondColor);       // "green"
+              ```
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Symbols
+              * A new javascript primitive data type
+              * a way to create private object members
+              * use Symbol function to create a symbol
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ```
+              let firstName = Symbol("first name");
+
+              // use a computed object literal property
+              let person = {
+                  [firstName]: "Nicholas"
+              };
+
+              // make the property read only
+              Object.defineProperty(person, firstName, { writable: false });
+
+              let lastName = Symbol("last name");
+
+              Object.defineProperties(person, {
+                  [lastName]: {
+                      value: "Zakas",
+                      writable: false
+                  }
+              });
+
+              console.log(person[firstName]);     // "Nicholas"
+              console.log(person[lastName]); 
+              ```
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Iterables and for-of
+              * iterator: Iterators are just objects with a specific interface designed for iteration
+              * All iterator objects have a next() method that returns a result object
+              *  result object has two properties: value, which is the next value, and done, which is a boolean that’s true when there are no more values to return
+              * iterable is an object with a Symbol.iterator property
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### create iterator using ES5
+              ```
+              function createIterator(items) {
+                var i = 0;
+                return {
+                  next: function() {
+                    var done = (i >= items.length);
+                    var value = !done ? items[i++] : undefined;
+                    return {
+                        done: done,
+                        value: value
+                    };
+                  }
+                };
+              }
+
+              var iterator = createIterator([1, 2, 3]);
+
+              console.log(iterator.next());           // "{ value: 1, done: false }"
+              console.log(iterator.next());           // "{ value: 2, done: false }"
+              console.log(iterator.next());           // "{ value: 3, done: false }"
+              console.log(iterator.next());           // "{ value: undefined, done: true }"
+
+              // for all further calls
+              console.log(iterator.next());           // "{ value: undefined, done: true }"
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Creating Iterables
+              ```
+              let collection = {
+                [Symbol.iterator]() {
+                  let counter = 0;
+                  return {
+                    next() {
+                      let result;
+                      if (counter < 10){
+                        result = {value: counter, done: false};
+                      }else{
+                        result = {value: undefined, done: true}
+                      }
+                      counter++;
+                      return result;
+                    }
+                  }
+                }
+              };
+
+              for (let x of collection) {
+                console.log(x);
+              }
+              ```
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Access iterator
+              ```
+              // access default iterator
+
+              let values = [1, 2, 3];
+              let iterator = values[Symbol.iterator]();
+
+              console.log(iterator.next());           // "{ value: 1, done: false }"
+              console.log(iterator.next());           // "{ value: 2, done: false }"
+
+              // access custome defined iterator
+
+              let iterator2 = collection[Symbol.iterator]();
+              console.log(iterator2.next());
+              console.log(iterator2.next());
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### `for...of` statement
+              * The `for...of` statement creates a loop iterating over iterable objects
+              * built-in iterable objects: String, Array, Array-like objects (e.g., arguments or NodeList), TypedArray, Map, Set
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Generator
+              * A generator is a function that returns an iterator
+              * Generators simplify iterator-authoring using `function*` and `yield`
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### create generator
+
+              ```
+              // generator
+              function *createIterator() {
+                  yield 1;
+                  yield 2;
+                  yield 3;
+              }
+
+              // generators are called like regular functions but return an iterator
+              let iterator = createIterator();
+
+              console.log(iterator.next().value);     // 1
+              console.log(iterator.next().value);     // 2
+              console.log(iterator.next().value);     // 3
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Creating Iterables using generotor
+              ```
+              let collection = {
+                items: [],
+                [Symbol.iterator]: function*() {
+                    for (let item of this.items) {
+                        yield item;
+                    }
+                }
+              };
+
+              collection.items.push(1);
+              collection.items.push(2);
+              collection.items.push(3);
+
+              for (let x of collection) {
+                  console.log(x);
+              }
+              ```
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### class
+              * Class declarations begin with the `class` keyword followed by the name of the class
+              * Use extends to inherit from another class
+              * Use `new` to create an instance of a class, 
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### define a class
+              ```
+              class PersonClass {
+                // equivalent of the PersonType constructor
+                constructor(name) {
+                    this.name = name;
+                }
+
+                // equivalent of PersonType.prototype.sayName
+                sayName() {
+                    console.log(this.name);
+                }
+              }
+
+              let person = new PersonClass("Nicholas");
+              person.sayName();   // outputs "Nicholas"
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### class inheritance
+
+              ```
+              class Rectangle {
+                constructor(length, width) {
+                  this.length = length;
+                  this.width = width;
+                }
+
+                getArea() {
+                  return this.length * this.width;
+                }
+              }
+
+              class Square extends Rectangle {
+                constructor(length) {
+
+                  // same as Rectangle.call(this, length, length)
+                  super(length, length);
+                }
+              }
+
+              var square = new Square(3);
+
+              console.log(square.getArea());              // 9
+              console.log(square instanceof Square);      // true
+              console.log(square instanceof Rectangle);   // true
+              ```
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Module
+              * Modules are JavaScript files that are loaded in a different mode
+              * Modules must export anything that should be available to code outside of the module.
+              * Modules may import bindings from other modules.
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ```
+              // lib/math.js
+              export function sum(x, y) {
+                return x + y;
+              }
+              export var pi = 3.141593;
+              ```
+
+              ```
+              // app.js
+              import * as math from "lib/math";
+              alert("2π = " + math.sum(math.pi, math.pi));
+              ```
+
+              ```
+              // otherApp.js
+              import {sum, pi} from "lib/math";
+              alert("2π = " + sum(pi, pi));
+              ```
+            </textarea>
+          </section>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### reference
+            * [lukehoban/es6features | github](https://github.com/lukehoban/es6features)
+            * [Understanding ECMAScript 6 by Nicholas C. Zakas](https://leanpub.com/understandinges6/read/)
+            * [More Resources](https://github.com/ericdouglas/ES6-Learning)
+          </textarea>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        history: true,
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
