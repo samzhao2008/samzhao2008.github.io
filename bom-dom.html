@@ -1,0 +1,634 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>BOM & DOM</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/moon.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### BOM (browser object model)
+
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### window object
+              * `window` object represents an instance of the browser.
+              * `window` is the ECMAScript Global object in browser
+              * if a webpage contains frames, each frame has its own `window` object.
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### window.open
+              * syntaxt `var window = window.open(url, windowName, [windowFeatures]);`
+              * arguments: the URL to load, the window target, and a string of features.
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### window.setTimeout
+              * use `window.setTimeout` to run code later.
+              * syntax `setTimeout(function[, delay, param1, param2, ...]);`
+              * it returns a numeric ID for the timeout.
+              * use `clearTimeout(timeoutId)` to cancel a timeout
+
+              [window.setTimeout | MDN](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout)
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### window.setInterval
+              * use `window.setInterval` to shedule repeat tasks run after a delay.
+              * syntax `window.setInterval(func, delay[, param1, param2, ...]);`
+              * it returns a numeric ID like `window.setTimeout`
+              * use `clearInterval(intervalId)` to cancel the interval tasks.
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              _the actually excution of the function passed to setTimeout or setInterval may be longer than the delay parameter you specified_
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### System Dialogs
+              * display message: `window.alert(msg)`
+              * ask for confirmation: `window.confirm(msg)`
+              * ask for user input: `window.prompt(msg)`
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### location object
+              * location object is a property of both window and document
+              * it has `href`, `protocol`, `host`, `hostname`, `port`, `pathname`, `hash` and `search` properties.
+              * can be manipulated in a few ways
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              #### location properties
+              <img src="images/location-object.png" alt="">
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### location properties
+              url: https://www.google.com/search?q=js#imgrc=63
+
+              <!-- | property | value          |
+              |----------|----------------|
+              | href     | 'https://www.google.com/search?q=js#imgrc=63'|
+              | protocol | 'https'  |
+              | host     |  'www.google.com' |
+              | hostname |  'www.google.com' |
+              | port     | ''         |
+              | pathname | '/search' | 
+              |  hash    |  '#imgrc=63' |
+              | search   | '?q=js' | -->
+
+              <table style="
+                    overflow: scroll;
+                    font-size: 34px;
+                ">
+                <thead>
+                  <tr>
+                  <th>property</th>
+                  <th>value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>href</td>
+                    <td>'<a href="https://www.google.com/search?q=js#imgrc=63">https://www.google.com/search?q=js#imgrc=63</a>'</td>
+                  </tr>
+                  <tr>
+                    <td>protocol</td>
+                    <td>'https'</td>
+                  </tr>
+                  <tr>
+                    <td>host</td>
+                    <td>'www.google.com'</td>
+                  </tr>
+                  <tr>
+                    <td>hostname</td>
+                    <td>'www.google.com'</td>
+                  </tr>
+                  <tr>
+                    <td>port</td>
+                    <td>''</td>
+                  </tr>
+                  <tr>
+                    <td>pathname</td>
+                    <td>'/search'</td>
+                  </tr>
+                  <tr>
+                    <td>hash</td>
+                    <td>'#imgrc=63'</td>
+                  </tr>
+                  <tr>
+                    <td>search</td>
+                    <td>'?q=js'</td>
+                  </tr>
+                  </tbody>
+                </table>
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### manipulation of location object
+              * `location.assign(url)`, the window start navigating to the new url immediately, and leave a record in the browser’s history stack 
+              * `window.location = url` or `location.href = url` has the same effect as calling `location.assign(url)`
+              * Changing various properties on the location object can also modify the currently loaded page
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### manipulation of location object
+              * `location.replace(url)`, similar to `location.assign(url)`, but it doesn't leave a record in the browser's history stack.
+              * `location.reload()` reloads the current page, if true is passed, it's forced to reload from server
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### the history object
+              * The history object represents the user’s navigation history since the given window was first used
+              * history is a property of window
+              * `history.go()` to navigate
+              * `history.forward` to forward
+              * `history.back` to navigate back 
+            </textarea>
+          </section>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### DOM
+            * DOM is the acronym of Document Object Model
+            * DOM is an application programming interface (API) for HTML and XML documents
+            * DOM represents a document as a hierarchical tree of nodes, allowing developers to add, remove, and modify individual parts of the page
+          </textarea>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Node Interface
+
+              ```
+              interface Node {
+                // NodeType
+                const unsigned short      ELEMENT_NODE       = 1;
+                const unsigned short      ATTRIBUTE_NODE     = 2;
+                const unsigned short      TEXT_NODE          = 3;
+                const unsigned short      CDATA_SECTION_NODE = 4;
+                const unsigned short      ENTITY_REFERENCE_NODE = 5;
+                const unsigned short      ENTITY_NODE        = 6;
+                const unsigned short      PROCESSING_INSTRUCTION_NODE = 7;
+                const unsigned short      COMMENT_NODE       = 8;
+                const unsigned short      DOCUMENT_NODE      = 9;
+                const unsigned short      DOCUMENT_TYPE_NODE = 10;
+                const unsigned short      DOCUMENT_FRAGMENT_NODE = 11;
+                const unsigned short      NOTATION_NODE      = 12;
+
+                readonly attribute  DOMString   nodeName;
+                         attribute  DOMString   nodeValue;
+                                // raises(DOMException) on setting
+                                // raises(DOMException) on retrieval
+                readonly attribute  unsigned short   nodeType;
+                readonly attribute  Node             parentNode;
+                readonly attribute  NodeList         childNodes;
+                readonly attribute  Node             firstChild;
+                readonly attribute  Node             lastChild;
+                readonly attribute  Node             previousSibling;
+                readonly attribute  Node             nextSibling;
+                readonly attribute  NamedNodeMap     attributes;
+                readonly attribute  Document         ownerDocument;
+                Node     insertBefore(in Node newChild, 
+                                      in Node refChild)
+                                      raises(DOMException);
+                Node     replaceChild(in Node newChild, 
+                                      in Node oldChild)
+                                      raises(DOMException);
+                Node     removeChild(in Node oldChild)
+                                     raises(DOMException);
+                Node     appendChild(in Node newChild)
+                                     raises(DOMException);
+                boolean  hasChildNodes();
+                Node     cloneNode(in boolean deep);
+              };
+              ```
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Node Types
+              * Node.ELEMENT_NODE (1)
+              * Node.ATTRIBUTE_NODE (2)
+              * Node.TEXT_NODE (3)
+              * Node.CDATA_SECTION_NODE (4)
+              * Node.ENTITY_REFERENCE_NODE (5)
+              * Node.ENTITY_NODE (6)
+              
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Node Types --cont
+              * Node.PROCESSING_INSTRUCTION_NODE (7)
+              * Node.COMMENT_NODE (8)
+              * Node.DOCUMENT_NODE (9)
+              * Node.DOCUMENT_TYPE_NODE (10)
+              * Node.DOCUMENT_FRAGMENT_NODE (11)
+              * Node.NOTATION_NODE (12)
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### nodeType, nodeName and nodeValue
+              * nodeType property: the integer value og the node.
+              * nodeName property: for elemnts, it's element’s tag name
+              * nodeValue property: for elements, it's always null
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Document Node Type
+
+              ```
+              interface Document : Node {
+                readonly attribute  DocumentType         doctype;
+                readonly attribute  DOMImplementation    implementation;
+                readonly attribute  Element  documentElement;
+                Element          createElement(in DOMString tagName)
+                DocumentFragment            createDocumentFragment();
+                Text             createTextNode;
+                Comment          createComment;
+                CDATASection     createCDATASection;
+                ProcessingInstruction createProcessingInstruction;
+                Attr            createAttribute;
+                EntityReference createEntityReference;
+                NodeList        getElementsByTagName
+              };
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### html document object
+              * the document object is an instance of HTMLDocument (which inherits from Document)
+              * represents the entire HTML page
+              * The document object is a property of window and so is accessible globally
+              * When web page is parsed by a browser, the document has only one child node, which is the `<html>` element 
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### HTML DOM Hierarchy
+              <img src="images/DOM-model.svg" alt="">
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### HTMLDocument interface
+              ```
+              interface HTMLDocument : Document {
+                         attribute  DOMString            title;
+                readonly attribute  DOMString            referrer;
+                readonly attribute  DOMString            domain;
+                readonly attribute  DOMString            URL;
+                         attribute  HTMLElement          body;
+                readonly attribute  HTMLCollection       images;
+                readonly attribute  HTMLCollection       applets;
+                readonly attribute  HTMLCollection       links;
+                readonly attribute  HTMLCollection       forms;
+                readonly attribute  HTMLCollection       anchors;
+                         attribute  DOMString            cookie;
+                void          open();
+                void          close();
+                void          write(in DOMString text);
+                void          writeln(in DOMString text);
+                Element       getElementById(in DOMString elementId);
+                NodeList      getElementsByName(in DOMString elementName);
+              };
+              ```
+            </textarea>
+          </section>
+
+          <section id="dom-node-relationship" data-markdown>
+            <textarea data-template>
+              #### node relationship
+              * parentNode
+              * childNodes
+              * firstChild
+              * lastChild
+              * previousSibling
+              * nextSibling
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### node relationship
+              <img src="images/dom-node-relationship.png" alt="node relationship">
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### node relationship - code
+              ```
+              // open console on this page
+              const ul = document.querySelector('#dom-node-relationship ul')
+              ul.parentNode;
+              ul.childNodes;
+              ul.firstChild;
+              ul.lastChild;
+              ul.previousSibling;
+              ul.nextSibling;
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### node manipulation
+              * insertBefore
+              * replaceChild
+              * removeChild
+              * appendChild
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### application 1 - using js to create a list
+
+              ```
+              const ul = document.createElement('ul');
+              ul.style.backgroundColor = 'white'
+              for(let i = 1; i < 5; i++){
+                let li = document.createElement('li');
+                li.innerText = `item ${i}`;
+                ul.appendChild(li);
+              }
+              document.body.appendChild(ul);
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### application 2 - dynamic script
+
+              ```
+              var script = document.createElement('script'); script.type = 'text/javascript';
+              script.src = 'https://code.jquery.com/jquery-3.3.1.min.js'; 
+              document.body.appendChild(script);
+              ```
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### DOM selector api
+              * getElementById
+              * getElementsByName
+              * getElementsByTagName
+              * getElementsByClassName
+              * querySelector (prefered)
+              * querySelectorAll (prefered)
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### querySelector && querySelectorAll
+
+              * receive a css selector as parameter.
+              * querySelector return the first found node.
+              * querySelectorAll return all nodes which meets the requirements. The return value is NodeList type, not Array.
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### selector example
+
+              ```
+                // select element which has 'dom-node-relationship' id
+                const section = document.querySelector('#dom-node-relationship');  
+
+                // select first li of ul inside section
+                const ul = section.querySelector('ul>li')
+                
+                //select all h3 elements
+                const h3s = document.querySelectorAll('h3');
+              ```
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### Events
+              * JavaScript’s interaction with HTML is handled through Events
+              * Using listener to subscribe Events (observer pattern)
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### EVENT FLOW
+              * Event Bubbling
+              * Event Capturing
+              * Dom Level 2 Event Flow
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Event Bubbling
+              <img src="images/event-bubbling-displayed.gif" alt="event Bubbling">
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Event Captureing
+              <img src="images/eventCapture.png" alt="event capture">
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Dom Level 2 Event Flow
+              * Three Phases: 
+                1. event capturing phase
+                2. at the target 
+                3. event bubbling phase
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Dom Level 2 Event Flow
+              <img src="images/dom-event-flow.gif" alt="dom event flow">
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Event Handlers
+              * HTML Event Handlers
+              ```
+                <input type=”button” value=”Click Me” onclick=”alert(‘Clicked’)” />
+              ```
+              * DOM Level 0 Event Handlers
+              ```
+                var btn = document.getElementById('myBtn'); 
+                btn.onclick = function(){ 
+                  alert('Clicked'); 
+                };
+              ```
+              * DOM Level 2 Event Handlers
+              ```
+                var btn = document.getElementById('myBtn');
+                btn.addEventListener('click', function(){
+                  alert(this.id);
+                }, false);
+              ```
+
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### The Event Object
+              ```
+              var btn = document.getElementById('myBtn');
+              btn.onclick = function(event){
+                alert(event.type);    //'click'
+              };
+              btn.addEventListener('click', function(event){
+                alert(event.type);    //'click'
+              }, false);
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### THE EVENT OBJECT Properties
+              * `bubbles`, read only, Boolean, whether the event bubbles up through the DOM or not
+              * `cancelable`, read only, Boolean, whether the event is cancelable.
+              * `currentTarget`, read only, The element whose event handler is currently handling the event.
+              * `target`, read only, The target of the event.
+              * `eventPhase`, read only, integer, 1 for the capturing phase, 2 for “at target,” and 3 for bubbling.
+              * `defaultPrevented`, read only, boolean, When true, indicates that preventDefault() has been called
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### THE EVENT OBJECT Method
+              * `preventDefault()`, Cancels the event (if it is cancelable).
+              * `stopPropagation()`, Stops the propagation of events further along in the DOM
+              * `stopImmediatePropagation()`, Cancels any further event capturing or event bubbling and prevents any other event handlers from being called.
+              [Event | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Event)
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Event Types
+              * UI Events, e.g. load, unload, select, resize, scroll
+              * Focus Events, e.g. blur, focus
+              * Mouse and Wheel Events, e.g. click, dblclick, mouseenter, mouseleave, mouseover
+              * Keyboard and Text Events, e.g. keydown, keypress, keyup
+              * Device Events, e.g. orientationchange, deviceorientation
+              * Touch and Gesture Events, e.g. touchstart, touchend, gesturestart, gestureend
+            </textarea>
+          </section>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            Further Reading:
+            * Professional JavaScript for Web Developers Third Edition by Nicholas C. Zakas, chapter 8 - 13
+          </textarea>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        history: true,
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
