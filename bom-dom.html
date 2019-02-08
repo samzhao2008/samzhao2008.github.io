@@ -644,6 +644,110 @@
           </section>
         </section>
 
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ### XMLHttpRequest
+              * Use XMLHttpRequest (XHR) objects to interact with servers
+              * enables a Web page to update just part of a page without disrupting what the user is doing
+              * XMLHttpRequest can be used to retrieve any type of data, not just XML
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### apis
+              * Initializes xhr object: `const xhr = new XMLHttpRequest()`
+              * Initializes a request: `xhr.open(method, url)`
+              * Set Http Request Header: `xhr.setRequestHeader(name, value)`
+              * Send the request: `xhr.send(body)`
+              * Listen `readyState`: `xhr.onreadystatechange = handler`
+              * Get response: `xhr.response` or `xhr.reponseText`
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### xhr.readySate
+
+              <table class="standard-table" style="font-size: 30px">
+               <tbody>
+                <tr>
+                 <td class="header">Value</td>
+                 <td class="header">State</td>
+                 <td class="header">Description</td>
+                </tr>
+                <tr>
+                 <td><code>0</code></td>
+                 <td><code>UNSENT</code></td>
+                 <td>Client has been created. <code>open()</code> not called yet.</td>
+                </tr>
+                <tr>
+                 <td><code>1</code></td>
+                 <td><code>OPENED</code></td>
+                 <td><code>open()</code> has been called.</td>
+                </tr>
+                <tr>
+                 <td><code>2</code></td>
+                 <td><code>HEADERS_RECEIVED</code></td>
+                 <td><code>send()</code> has been called, and headers and status are available.</td>
+                </tr>
+                <tr>
+                 <td><code>3</code></td>
+                 <td><code>LOADING</code></td>
+                 <td>Downloading; <code>responseText</code> holds partial data.</td>
+                </tr>
+                <tr>
+                 <td><code>4</code></td>
+                 <td><code>DONE</code></td>
+                 <td>The operation is complete.</td>
+                </tr>
+               </tbody>
+              </table>
+              <!-- |value | state | description |
+              |------|-------|-------------|
+              | 0    | UNSENT| Client has been created. open() not called yet.|
+              |1     | OPENED | open() has been called.|
+              |2     | HEADERS_RECEIVED | send() has been called, and headers and status are available. |
+              |3     | LOADING | Downloading; responseText holds partial data. |
+              |4     | DONE | The operation is complete. | -->
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### example
+
+              ```
+              const xhr = new XMLHttpRequest(),
+                    method = 'POST',
+                    url = '/todo-items';
+              xhr.open(method, url);
+              xhr.onreadystatechange = function(){
+                if (xhr.readyState === 4 && xhr.status === 200){
+                  // handler
+                }
+              };
+              xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+              xhr.send(`todo=${todoText}`);
+              ```
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### reference
+              [XMLHttpRequest | MDN](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
+            </textarea>
+          </section>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ### Demo - To Do List
+          </textarea>
+        </section>
+
         <section data-markdown>
           <textarea data-template>
             Further Reading:
