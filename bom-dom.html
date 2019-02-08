@@ -45,7 +45,7 @@
           <section data-markdown>
             <textarea data-template>
               #### window.open
-              * syntaxt `var window = window.open(url, windowName, [windowFeatures]);`
+              * syntaxt `var window = window.open(url, windowTarget, [windowFeatures]);`
               * arguments: the URL to load, the window target, and a string of features.
 
             </textarea>
@@ -429,7 +429,8 @@
               #### application 2 - dynamic script
 
               ```
-              var script = document.createElement('script'); script.type = 'text/javascript';
+              var script = document.createElement('script');
+              script.type = 'text/javascript';
               script.src = 'https://code.jquery.com/jquery-3.3.1.min.js'; 
               document.body.appendChild(script);
               ```
@@ -599,6 +600,46 @@
               * Keyboard and Text Events, e.g. keydown, keypress, keyup
               * Device Events, e.g. orientationchange, deviceorientation
               * Touch and Gesture Events, e.g. touchstart, touchend, gesturestart, gestureend
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Event Delegation
+              * what: add event listener to element parent, not individual element.
+              * how: event bubbling phase allow parent node get notified
+              * why: 
+                1. add event listener to dynamic created elements.
+                2. performance
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              #### Event Delegation Example
+
+              ```
+              <!-- html -->
+              <ul id="list">
+                <li class="item">item 1</li>
+                <li class="item">item 2</li>
+                <li class="item">item 3</li>
+                <li class="item">item 4</li>
+              </ul>
+              ```
+              ```
+              document.querySelectorAll('.item').forEach((ele) => {
+                ele.addEventListener('click', eventHandler, false)
+              })
+
+              // event delegation
+              document.querySelector('#list').addEventListener((event) => {
+                const ele = event.target;
+                if (ele.classList.contains('item')){
+                  eventHandler(ele);
+                }
+              }, false)
+              ```
             </textarea>
           </section>
         </section>
